@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Edit Tax Payment Record</h2>
+<form method="POST" action="/edit/{{ record.id }}" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label for="company" class="form-label">Company</label>
+        <input type="text" class="form-control" id="company" name="company" value="{{ record.company }}" required>
+        <div class="invalid-feedback">Please provide a company name.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="amount" class="form-label">Amount</label>
+        <input type="number" class="form-control" id="amount" name="amount" value="{{ record.amount }}" step="0.01" required>
+        <div class="invalid-feedback">Please provide a valid amount.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="payment_date" class="form-label">Payment Date</label>
+        <input type="date" class="form-control" id="payment_date" name="payment_date" value="{{ record.payment_date }}">
+    </div>
+
+    <div class="mb-3">
+        <label for="status" class="form-label">Status</label>
+        <select class="form-select" id="status" name="status" required>
+            <option value="paid" {% if record.status == "paid" %}selected{% endif %}>Paid</option>
+            <option value="unpaid" {% if record.status == "unpaid" %}selected{% endif %}>Unpaid</option>
+        </select>
+        <div class="invalid-feedback">Please select a status.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="due_date" class="form-label">Due Date</label>
+        <select class="form-select" id="due_date" name="due_date" required>
+            {% for date in due_dates %}
+            <option value="{{ date }}" {% if record.due_date == date %}selected{% endif %}>{{ date }}</option>
+            {% endfor %}
+        </select>
+        <div class="invalid-feedback">Please select a due date.</div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Update</button>
+    <a href="/" class="btn btn-secondary">Cancel</a>
+</form>
+<script>
+    // Enable Bootstrap form validation
+    (function () {
+        'use strict';
+        var forms = document.querySelectorAll('.needs-validation');
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+</script>
+{% endblock %}

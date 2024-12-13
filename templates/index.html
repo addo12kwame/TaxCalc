@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mb-4">Tax Payment Records</h2>
+
+<!-- Display records -->
+{% if records %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Company</th>
+            <th>Amount</th>
+            <th>Payment Date</th>
+            <th>Status</th>
+            <th>Due Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in records %}
+        <tr>
+            <td>{{ record.id }}</td>
+            <td>{{ record.company }}</td>
+            <td>${{ "{:,.2f}".format(record.amount) }}</td>
+            <td>{{ record.payment_date or "N/A" }}</td>
+            <td>{{ record.status }}</td>
+            <td>{{ record.due_date }}</td>
+            <td>
+                <!-- Action buttons -->
+                <a href="/edit/{{ record.id }}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="/delete/{{ record.id }}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="text-muted">No records found. Add some data to get started!</p>
+{% endif %}
+
+<!-- Add Record Button -->
+<a href="/add" class="btn btn-primary mt-4">Add New Record</a>
+{% endblock %}
