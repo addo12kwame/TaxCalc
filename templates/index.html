@@ -3,41 +3,108 @@
 {% block content %}
 <h2 class="mb-4">Tax Payment Records</h2>
 
-<!-- Display records -->
-{% if records %}
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Company</th>
-            <th>Amount</th>
-            <th>Payment Date</th>
-            <th>Status</th>
-            <th>Due Date</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for record in records %}
-        <tr>
-            <td>{{ record.id }}</td>
-            <td>{{ record.company }}</td>
-            <td>${{ "{:,.2f}".format(record.amount) }}</td>
-            <td>{{ record.payment_date or "N/A" }}</td>
-            <td>{{ record.status }}</td>
-            <td>{{ record.due_date }}</td>
-            <td>
-                <!-- Action buttons -->
-                <a href="/edit/{{ record.id }}" class="btn btn-sm btn-warning">Edit</a>
-                <a href="/delete/{{ record.id }}" class="btn btn-sm btn-danger">Delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% else %}
-<p class="text-muted">No records found. Add some data to get started!</p>
-{% endif %}
+<!-- Filter Form -->
+<form id="filter-form" method="POST" action="/" class="mb-4">
+    <div class="row">
+        <!-- Due Date Dropdown -->
+        <div class="col-md-4">
+            <select class="form-select" id="due_date" name="due_date">
+                <option value="">All Due Dates</option>
+                {% for date in due_dates %}
+                <option value="{{ date }}" {% if selected_due_date == date %}selected{% endif %}>{{ date }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Tax Rate Input -->
+        <div class="col-md-4">
+            <input type="number" class="form-control" id="tax_rate" name="tax_rate" placeholder="Enter tax rate (e.g., 0.06)" step="0.01" value="{{ tax_rate }}">
+        </div>
+
+        <!-- Filter Button -->
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+    </div>
+</form>
+
+
+<!-- Display Records -->
+<div id="records-section">
+    {% if records.items %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Company</th>
+                <th>Amount</th>
+                <th>Payment Date</th>
+                <th>Status</th>
+                <th>Due Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="records-table">
+            {% for record in records.items %}
+            <tr>
+                <td>{{ record.id }}</td>
+                <td>{{ record.company }}</td>
+                <td>${{ "{:,.2f}".format(record.amount) }}</td>
+                <td>{{ record.payment_date or "N/A" }}</td>
+                <td>{{ record.status }}</td>
+                <td>{{ record.due_date }}</td>
+                <td>
+                    <a href="/edit/{{ record.id }}" class="btn btn-sm btn-warning">Edit</a>
+                     <a href="#" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ record.id }}')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Tax Summary -->
+  <div class="card mt-4">
+    <div class="card-header">
+        Summary for {{ selected_due_date or "All Due Dates" }}
+    </div>
+    <div class="card-body">
+        <p class="card-text"><strong>Total Amount:</strong> ${{ "{:,.2f}".format(total_amount) }}</p>
+        <p class="card-text"><strong>Tax Rate:</strong> {{ tax_rate * 100 }}%</p>
+        <p class="card-text"><strong>Tax Due:</strong> ${{ "{:,.2f}".format(tax_due) }}</p>
+    </div>
+</div>
+
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination mt-4">
+            {% if records.has_prev %}
+            <li class="page-item">
+                <a class="page-link" href="/?page={{ records.prev_num }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {% endif %}
+            {% for page_num in records.iter_pages() %}
+            {% if page_num %}
+            <li class="page-item {% if page_num == records.page %}active{% endif %}">
+                <a class="page-link" href="/?page={{ page_num }}">{{ page_num }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+            {% if records.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="/?page={{ records.next_num }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% else %}
+    <p class="text-muted">No records found for the selected due date.</p>
+    {% endif %}
+</div>
 
 <!-- Add Record Button -->
 <a href="/add" class="btn btn-primary mt-4">Add New Record</a>

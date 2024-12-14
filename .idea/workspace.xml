@@ -4,20 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0d1e98f-f2c1-4c56-9f69-b1ba318b4c5e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/TaxCalc.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/add_record.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/edit_record.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+    <list default="true" id="a0d1e98f-f2c1-4c56-9f69-b1ba318b4c5e" name="Changes" comment="adding implementation">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/scripts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/add_record.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add_record.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +31,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "addo12kwame"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/addo12kwame/TaxCalc.git",
+    "accountId": "9c2fcf24-5ff8-4b84-9c41-67a33fcea46a"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 8
 }]]></component>
@@ -70,7 +76,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -95,11 +101,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1734095305384</updated>
-      <workItem from="1734095306474" duration="1587000" />
+      <workItem from="1734095306474" duration="12963000" />
     </task>
+    <task id="LOCAL-00001" summary="adding implementation">
+      <option name="closed" value="true" />
+      <created>1734097244910</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1734097244910</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="adding implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding implementation" />
   </component>
 </project>
